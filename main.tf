@@ -1,11 +1,10 @@
-
-resource "google_compute_network" "App" {
-  name                    = "App"
+resource "google_compute_network" "app" {
+  name                    = "app"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "App" {
-  name          = "App"
+  name          = "app"
   ip_cidr_range = "10.2.0.0/16"
   region        = "us-west1"
   network       = google_compute_network.App.id
@@ -28,7 +27,7 @@ resource "google_compute_instance" "web" {
     }
   }
   network_interface {
-   subnetwork = "App"
+   subnetwork = "app"
    access_config {
       # Leave empty for dynamic public IP
     }
