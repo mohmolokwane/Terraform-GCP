@@ -39,7 +39,7 @@ data "google_compute_image" "ubuntu" {
 }
 
 resource "google_compute_instance" "blog" {
-  name         = "var.app_name"
+  name         = var.app_name
   machine_type = var.machine_type
 
     boot_disk {
