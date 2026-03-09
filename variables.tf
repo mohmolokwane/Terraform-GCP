@@ -15,7 +15,7 @@ variable "network_name" {
 
 variable "network_ip_range" { 
   type    = string
-  default = ip_cidr_range = "10.2.0.0/16"
+  default = "10.2.0.0/16"
 }
 
 variable "image_project" { 
