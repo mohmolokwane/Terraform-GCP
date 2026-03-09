@@ -34,8 +34,8 @@ module "app_network" {
 
 data "google_compute_image" "ubuntu" {
   most_recent = true
-  project     = "var.image_project" 
-  family      = "var.image_family"
+  project     = var.image_project 
+  family      = var.image_family
 }
 
 resource "google_compute_instance" "blog" {
