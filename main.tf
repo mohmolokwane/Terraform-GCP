@@ -18,19 +18,20 @@ module "app_network" {
      name          = "${var.network_name}-web"
      description   = "Inbound web"
     
-     source_ranges  = ["0.0.0.0/0]
-     source_tags    = ["${var.network_name}-web"]
+     source_ranges = ["0.0.0.0/0]
+     target_tags   = ["${var.network_name}-web"]
 
 
      allow = [
        {
-        protocol = string
-        ports    = optional(list(string))
+        protocol   = "tcp"
+        ports      = ["80",443"]
        }
      ]
    }
  ] 
 }
+
 
 data "google_compute_image" "ubuntu" {
   most_recent = true
@@ -41,8 +42,6 @@ data "google_compute_image" "ubuntu" {
 resource "google_compute_instance" "blog" {
   name         = "var.app_name"
   machine_type = "var.machine_type"
-
-  tags = ["${var.network_name}-web"]
 
     boot_disk {
     initialize_params {
@@ -55,7 +54,6 @@ resource "google_compute_instance" "blog" {
       # Leave empty for dynamic public IP
     }
   } 
-   
-   metadata_startup_script = "apt -y update; apt install nginx; echo ${var.app_name} > /var/www/html/index.html
+
    allow_stopping_for_update = true
 }
