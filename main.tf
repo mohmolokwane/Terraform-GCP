@@ -15,7 +15,6 @@ module "app_network" {
 
  ingress_rules = [ 
    {
-
      name          = "${var.network_name}-web"
      description   = "Inbound web"
     
@@ -24,8 +23,8 @@ module "app_network" {
 
      allow = [
        {
-        protocol   = "tcp"
-        ports      = ["80","443"]
+         protocol  = "tcp"
+         ports     = ["80","443"]
        }
      ]
    }
